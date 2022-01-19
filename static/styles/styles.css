@@ -82,7 +82,7 @@ select {
 }
 
 .item:hover p {
-    color: #097284;
+    color: #00adcc;
 }
 
 .btn-block {
@@ -105,4 +105,25 @@ button {
 
 button:hover {
     background-color: #0666a3;
+}
+
+.confirmation-base {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.confirmation-base p {
+    color: rgb(29, 29, 29)
+}
+
+.bg {
+    background-color: rgb(118, 211, 118);
+}
+
+.download {
+    text-align: end;
 }
