@@ -4,11 +4,16 @@ from flask import Flask, request, render_template, redirect, url_for, send_from_
 from flask_sqlalchemy import SQLAlchemy
 import csv
 
+##########
+# Validations to implement:
+# 1. Weights have to be equal to 100%
+# empty strings need to be transformed to Null
+###########
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ryyohlwbhegroa:0fc7c5e5b5c20fd87c8ac45f49862b3decce41ff9f995cd4fcb6a13845f44d76@ec2-52-214-178-113.eu-west-1.compute.amazonaws.com:5432/d308ve33cr91fu'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["TEMP"] = "temp"
-# app.secret_key = 'secret'
 
 db = SQLAlchemy(app)
 
@@ -24,6 +29,14 @@ class Portfolio(db.Model):
     asset5 = db.Column(db.String(100))
     asset6 = db.Column(db.String(100))
     asset7 = db.Column(db.String(100))
+    asset8 = db.Column(db.String(100))
+    asset9 = db.Column(db.String(100))
+    asset10 = db.Column(db.String(100))
+    asset11 = db.Column(db.String(100))
+    asset12 = db.Column(db.String(100))
+    asset13 = db.Column(db.String(100))
+    asset14 = db.Column(db.String(100))
+    asset15 = db.Column(db.String(100))
     weight1 = db.Column(db.Float())
     weight2 = db.Column(db.Float())
     weight3 = db.Column(db.Float())
@@ -31,6 +44,14 @@ class Portfolio(db.Model):
     weight5 = db.Column(db.Float())
     weight6 = db.Column(db.Float())
     weight7 = db.Column(db.Float())
+    weight8 = db.Column(db.Float())
+    weight9 = db.Column(db.Float())
+    weight10 = db.Column(db.Float())
+    weight11 = db.Column(db.Float())
+    weight12 = db.Column(db.Float())
+    weight13 = db.Column(db.Float())
+    weight14 = db.Column(db.Float())
+    weight15 = db.Column(db.Float())
 
     def __init__(self, cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, weight1, weight2, weight3, weight4, weight5, weight6, weight7):
         self.cet_timestamp = cet_timestamp
