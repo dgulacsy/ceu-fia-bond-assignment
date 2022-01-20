@@ -53,7 +53,7 @@ class Portfolio(db.Model):
     weight14 = db.Column(db.Float())
     weight15 = db.Column(db.Float())
 
-    def __init__(self, cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, weight1, weight2, weight3, weight4, weight5, weight6, weight7):
+    def __init__(self, cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, asset8, asset9, asset10, asset11, asset12, asset13, asset14, asset15, weight1, weight2, weight3, weight4, weight5, weight6, weight7, weight8, weight9, weight10, weight11, weight12, weight13, weight14, weight15):
         self.cet_timestamp = cet_timestamp
         self.team_name = team_name
         self.email = email
@@ -64,6 +64,14 @@ class Portfolio(db.Model):
         self.asset5 = asset5
         self.asset6 = asset6
         self.asset7 = asset7
+        self.asset8 = asset8
+        self.asset9 = asset9
+        self.asset10 = asset10
+        self.asset11 = asset11
+        self.asset12 = asset12
+        self.asset13 = asset13
+        self.asset14 = asset14
+        self.asset15 = asset15
         self.weight1 = weight1
         self.weight2 = weight2
         self.weight3 = weight3
@@ -71,6 +79,14 @@ class Portfolio(db.Model):
         self.weight5 = weight5
         self.weight6 = weight6
         self.weight7 = weight7
+        self.weight8 = weight8
+        self.weight9 = weight9
+        self.weight10 = weight10
+        self.weight11 = weight11
+        self.weight12 = weight12
+        self.weight13 = weight13
+        self.weight14 = weight14
+        self.weight15 = weight15
 
 @app.route("/")
 def main():
@@ -88,6 +104,14 @@ def add_portfolio():
     asset5 = request.form["asset5"]
     asset6 = request.form["asset6"]
     asset7 = request.form["asset7"]
+    asset8 = request.form["asset8"]
+    asset9 = request.form["asset9"]
+    asset10 = request.form["asset10"]
+    asset11 = request.form["asset11"]
+    asset12 = request.form["asset12"]
+    asset13 = request.form["asset13"]
+    asset14 = request.form["asset14"]
+    asset15 = request.form["asset15"]
     weight1 = request.form["weight1"]
     weight2 = request.form["weight2"]
     weight3 = request.form["weight3"]
@@ -95,7 +119,15 @@ def add_portfolio():
     weight5 = request.form["weight5"]
     weight6 = request.form["weight6"]
     weight7 = request.form["weight7"]
-    entry = Portfolio(cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, weight1, weight2, weight3, weight4, weight5, weight6, weight7)
+    weight8 = request.form["weight8"]
+    weight9 = request.form["weight9"]
+    weight10 = request.form["weight10"]
+    weight11 = request.form["weight11"]
+    weight12 = request.form["weight12"]
+    weight13 = request.form["weight13"]
+    weight14 = request.form["weight14"]
+    weight15 = request.form["weight15"]
+    entry = Portfolio(cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, asset8 , asset9, asset10, asset11, asset12, asset13, asset14, asset15, weight1, weight2, weight3, weight4, weight5, weight6, weight7, weight8, weight9, weight10, weight11, weight12, weight13, weight14, weight15)
     db.session.add(entry)
     db.session.commit()
     return redirect(url_for("success"))
