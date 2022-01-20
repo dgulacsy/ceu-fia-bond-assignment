@@ -6,17 +6,31 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
+    <script>
+        function validateForm() {
+            let sum = 0;
+            let weights = document.querySelectorAll('[name^="weight"]');
+            weights.forEach(function(x) {
+                sum += Number(x.value)
+            });
+            console.log(sum)
+            if (sum == NaN || sum != 100) {
+                alert('Sum of weights must be 100%');
+                return false;
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div class="base">
-        <form action="/add_portfolio" , method="post">
+        <form name="form" action="/add_portfolio" method="post" onsubmit="return validateForm()">
             <h1>CEU FIA Bonds Assignment</h1>
             <h2>Submit your portfolio</h1>
                 <div class="item">
                     <p>Team name</p>
                     <div class="team-item">
-                        <select name="team_name">
+                        <select name="team_name" required="required">
                             <option value="">Team</option>
                             <option value="1">Team 1</option>
                             <option value="2">Team 2</option>
@@ -30,113 +44,113 @@
                 </div>
                 <div class="item">
                     <p>CEU email</p>
-                    <input type="email" name="email" />
+                    <input type="email" name="email" required="required" />
                 </div>
                 <div class="item">
                     <p>Portfolio Constituents</p>
                     <p>Asset 1</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
-                        <input type="name" name="asset1" />
-                        <label>Weight</label>
-                        <input type="number" id="weight1" name="weight1" placeholder="0" step="0.1" min=0>
+                        <input type="name" name="asset1" required="required" />
+                        <label>Weight (%)</label>
+                        <input type="number" name="weight1" placeholder="0" step="0.1" min=0>
                     </div>
                     <p>Asset 2</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset2" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight2" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 3</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset3" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight3" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 4</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset4" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight4" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 5</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset5" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight5" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 6</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset6" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight6" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 7</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset7" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight7" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 8</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset8" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight8" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 9</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset9" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight9" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 10</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset10" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight10" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 11</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset11" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight11" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 12</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset12" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight12" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 13</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset13" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight13" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 14</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset14" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight14" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                     <p>Asset 15</p>
                     <div class="portfolio-item">
                         <label>ISIN</label>
                         <input type="name" name="asset15" />
-                        <label>Weight</label>
+                        <label>Weight (%)</label>
                         <input type="number" name="weight15" placeholder="0" step="0.1" min=0 max=100>
                     </div>
                 </div>

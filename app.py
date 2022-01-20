@@ -4,10 +4,15 @@ from flask import Flask, request, render_template, redirect, url_for, send_from_
 from flask_sqlalchemy import SQLAlchemy
 import csv
 
+def empty_to_zero(number):
+    if number == "":
+        return 0
+    return number
+
 ##########
 # Validations to implement:
 # 1. Weights have to be equal to 100%
-# empty strings need to be transformed to Null
+# empty strings need to be transformed to zero
 ###########
 
 app = Flask(__name__)
@@ -112,21 +117,21 @@ def add_portfolio():
     asset13 = request.form["asset13"]
     asset14 = request.form["asset14"]
     asset15 = request.form["asset15"]
-    weight1 = request.form["weight1"]
-    weight2 = request.form["weight2"]
-    weight3 = request.form["weight3"]
-    weight4 = request.form["weight4"]
-    weight5 = request.form["weight5"]
-    weight6 = request.form["weight6"]
-    weight7 = request.form["weight7"]
-    weight8 = request.form["weight8"]
-    weight9 = request.form["weight9"]
-    weight10 = request.form["weight10"]
-    weight11 = request.form["weight11"]
-    weight12 = request.form["weight12"]
-    weight13 = request.form["weight13"]
-    weight14 = request.form["weight14"]
-    weight15 = request.form["weight15"]
+    weight1 = empty_to_zero(request.form["weight1"])
+    weight2 = empty_to_zero(request.form["weight2"])
+    weight3 = empty_to_zero(request.form["weight3"])
+    weight4 = empty_to_zero(request.form["weight4"])
+    weight5 = empty_to_zero(request.form["weight5"])
+    weight6 = empty_to_zero(request.form["weight6"])
+    weight7 = empty_to_zero(request.form["weight7"])
+    weight8 = empty_to_zero(request.form["weight8"])
+    weight9 = empty_to_zero(request.form["weight9"])
+    weight10 = empty_to_zero(request.form["weight10"])
+    weight11 = empty_to_zero(request.form["weight11"])
+    weight12 = empty_to_zero(request.form["weight12"])
+    weight13 = empty_to_zero(request.form["weight13"])
+    weight14 = empty_to_zero(request.form["weight14"])
+    weight15 = empty_to_zero(request.form["weight15"])
     entry = Portfolio(cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, asset8 , asset9, asset10, asset11, asset12, asset13, asset14, asset15, weight1, weight2, weight3, weight4, weight5, weight6, weight7, weight8, weight9, weight10, weight11, weight12, weight13, weight14, weight15)
     db.session.add(entry)
     db.session.commit()
