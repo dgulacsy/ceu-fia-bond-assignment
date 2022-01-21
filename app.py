@@ -161,7 +161,8 @@ def current_portfolios():
 
 @app.route("/download/<path:filename>'", methods=['GET', 'POST'])
 def download(filename):
-    print("Initiating data dump...")
+    if not os.path.exists('temp'):
+        os.makedirs('temp')
     outfile = open('temp/'+filename,'w')
     outcsv = csv.writer(outfile)
     records = db.session.query(Portfolio).all()
@@ -172,7 +173,6 @@ def download(filename):
     outfile.close()
     temp = os.path.join(current_app.root_path, app.config['TEMP'])
     try:
-        print("sending file")
         return send_from_directory(temp, filename=filename, as_attachment=True, cache_timeout=0)
     except FileNotFoundError:
         abort(404)
