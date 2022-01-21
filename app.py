@@ -157,7 +157,6 @@ def current_portfolios():
     df = pd.read_sql(q.statement, q.session.bind)
     df['cet_timestamp']=pd.to_datetime(df["cet_timestamp"]).round("min")
     df = df.set_index("team_name").drop("id",axis = 1).transpose()
-    print(df)
     return render_template('current_portfolios.html', tables=[df.to_html(classes='data table')], titles=df.columns.values)
 
 @app.route("/download/<path:filename>'", methods=['GET', 'POST'])
