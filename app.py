@@ -18,7 +18,7 @@ def empty_to_zero(number):
 ###########
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ryyohlwbhegroa:0fc7c5e5b5c20fd87c8ac45f49862b3decce41ff9f995cd4fcb6a13845f44d76@ec2-52-214-178-113.eu-west-1.compute.amazonaws.com:5432/d308ve33cr91fu'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kueirxihrrpvss:b1480c6f1c7b420c43f03f30b7f7d2470f95d72fd9ed228da4623928b960cde6@ec2-54-247-158-179.eu-west-1.compute.amazonaws.com:5432/d80e2kb041fuip'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["TEMP"] = "temp"
 
