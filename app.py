@@ -2,7 +2,9 @@ import os
 from datetime import datetime as dt, timedelta as td
 from flask import Flask, request, render_template, redirect, url_for, send_from_directory, current_app
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import *
 import csv
+import pandas as pd
 
 def empty_to_zero(number):
     if number == "":
@@ -28,34 +30,34 @@ class Portfolio(db.Model):
     team_name = db.Column(db.String(100))
     email = db.Column(db.String(100))
     asset1 = db.Column(db.String(100))
-    asset2 = db.Column(db.String(100))
-    asset3 = db.Column(db.String(100))
-    asset4 = db.Column(db.String(100))
-    asset5 = db.Column(db.String(100))
-    asset6 = db.Column(db.String(100))
-    asset7 = db.Column(db.String(100))
-    asset8 = db.Column(db.String(100))
-    asset9 = db.Column(db.String(100))
-    asset10 = db.Column(db.String(100))
-    asset11 = db.Column(db.String(100))
-    asset12 = db.Column(db.String(100))
-    asset13 = db.Column(db.String(100))
-    asset14 = db.Column(db.String(100))
-    asset15 = db.Column(db.String(100))
     weight1 = db.Column(db.Float())
+    asset2 = db.Column(db.String(100))
     weight2 = db.Column(db.Float())
+    asset3 = db.Column(db.String(100))
     weight3 = db.Column(db.Float())
+    asset4 = db.Column(db.String(100))
     weight4 = db.Column(db.Float())
+    asset5 = db.Column(db.String(100))
     weight5 = db.Column(db.Float())
+    asset6 = db.Column(db.String(100))
     weight6 = db.Column(db.Float())
+    asset7 = db.Column(db.String(100))
     weight7 = db.Column(db.Float())
+    asset8 = db.Column(db.String(100))
     weight8 = db.Column(db.Float())
+    asset9 = db.Column(db.String(100))
     weight9 = db.Column(db.Float())
+    asset10 = db.Column(db.String(100))
     weight10 = db.Column(db.Float())
+    asset11 = db.Column(db.String(100))
     weight11 = db.Column(db.Float())
+    asset12 = db.Column(db.String(100))
     weight12 = db.Column(db.Float())
+    asset13 = db.Column(db.String(100))
     weight13 = db.Column(db.Float())
+    asset14 = db.Column(db.String(100))
     weight14 = db.Column(db.Float())
+    asset15 = db.Column(db.String(100))
     weight15 = db.Column(db.Float())
 
     def __init__(self, cet_timestamp, team_name, email, asset1, asset2, asset3, asset4, asset5, asset6, asset7, asset8, asset9, asset10, asset11, asset12, asset13, asset14, asset15, weight1, weight2, weight3, weight4, weight5, weight6, weight7, weight8, weight9, weight10, weight11, weight12, weight13, weight14, weight15):
@@ -140,6 +142,23 @@ def add_portfolio():
 @app.route("/success")
 def success():
     return render_template('success.html')
+
+@app.route("/current_portfolios")
+def current_portfolios():
+    subq=db.session.query(Portfolio.team_name,
+    func.max(Portfolio.cet_timestamp).label("maxdate")) \
+    .group_by(Portfolio.team_name).subquery()
+    q=db.session.query(Portfolio).join(
+        subq, 
+        and_(
+            Portfolio.team_name == subq.c.team_name, 
+            Portfolio.cet_timestamp == subq.c.maxdate)) \
+        .order_by(Portfolio.team_name)
+    df = pd.read_sql(q.statement, q.session.bind)
+    df['cet_timestamp']=pd.to_datetime(df["cet_timestamp"]).round("min")
+    df = df.set_index("team_name").drop("id",axis = 1).transpose()
+    print(df)
+    return render_template('current_portfolios.html', tables=[df.to_html(classes='data table')], titles=df.columns.values)
 
 @app.route("/download/<path:filename>'", methods=['GET', 'POST'])
 def download(filename):
