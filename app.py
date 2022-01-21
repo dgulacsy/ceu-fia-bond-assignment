@@ -11,12 +11,6 @@ def empty_to_zero(number):
         return 0
     return number
 
-##########
-# Validations to implement:
-# 1. Weights have to be equal to 100%
-# empty strings need to be transformed to zero
-###########
-
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kueirxihrrpvss:b1480c6f1c7b420c43f03f30b7f7d2470f95d72fd9ed228da4623928b960cde6@ec2-54-247-158-179.eu-west-1.compute.amazonaws.com:5432/d80e2kb041fuip'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
